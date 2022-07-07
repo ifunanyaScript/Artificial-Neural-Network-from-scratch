@@ -4,4 +4,4 @@ Tensorflow, Pytorch, etc. <br>
 Just pure vanilla Numpy and Mathematical concepts.
 I'm using the famous MNIST dataset to work on this repo.
 If you're reading this, I hope you look at the notebook.<br> 
-I tried to simplify the mathematics behind neural networks.
+I tried to simplify the mathematics behind neural networks and it's entirely easy to understand.
