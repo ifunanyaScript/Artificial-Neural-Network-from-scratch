@@ -25,4 +25,8 @@ def LR_deriv(step_1, alpha):
                 sub_array[i] = alpha
     return step_1
 
+def Softmax(step_3):
+    prob_array = np.exp(step_3) / sum(np.exp(step_3))
+    return prob_array
+
 # ifunanyaScript
