@@ -1,3 +1,4 @@
+import numpy as np
 
 def initial_parameters():
     first_weights = np.random.rand(10, 784) - .5
