@@ -42,4 +42,15 @@ def forward_pass(first_weights, first_bias, second_weights, second_bias, X_train
     step_4 = Softmax(step_3)
     return step_1, step_2, step_3, step_4
 
+def backward_pass(step_1, step_2, step_3, step_4, first_weights, second_weights,
+                  X_train, Y_train):
+    binary_labels = One_Hot_Encoder(Y_train)
+    d_step_3 = 2*(step_4 - binary_labels)
+    d_second_weights = 1/samples * d_step_3.dot(step_2.T)
+    d_second_bias = 1/samples * np.sum(d_step_3)
+    d_step_2 = second_weights.T.dot(d_step_3) * LR_deriv(step_1, alpha=0.01)
+    d_first_weights = 1/samples * d_step_2.dot(X_train.T)
+    d_first_bias = 1/samples * np.sum(d_step_2)
+    return d_first_weights, d_first_bias, d_second_weights, d_second_bias
+
 # ifunanyaScript
