@@ -13,3 +13,5 @@ def Leaky_ReLU(step_1, alpha):
             else:
                 sub_array[i] = (alpha*value)
     return step_1
+
+# ifunanyaScript
