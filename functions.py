@@ -62,4 +62,7 @@ def update_parameters(first_weights, first_bias, second_weights, second_bias,
     second_bias = second_bias - d_second_bias*learning_rate
     return first_weights, first_bias, second_weights, second_bias
 
+def predictions(step_4):
+    return np.argmax(step_4, 0)
+
 # ifunanyaScript
