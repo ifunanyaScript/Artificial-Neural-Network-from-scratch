@@ -65,4 +65,8 @@ def update_parameters(first_weights, first_bias, second_weights, second_bias,
 def predictions(step_4):
     return np.argmax(step_4, 0)
 
+def accuracy(predictions, Y_train):
+    # print(predictions, Y_train)
+    return np.sum(predictions == Y_train)/Y_train.shape[0]
+
 # ifunanyaScript
