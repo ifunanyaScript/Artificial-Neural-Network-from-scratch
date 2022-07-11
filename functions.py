@@ -30,6 +30,11 @@ def Softmax(step_3):
     return prob_array
 
 def One_Hot_Encoder(Y_train):
+    
+    
+    
+    
+    
     binary_labels = np.zeros((Y_train.size, Y_train.max() + 1))
     binary_labels[np.arange(Y_train.size), Y_train] = 1
     binary_labels = binary_labels.T
