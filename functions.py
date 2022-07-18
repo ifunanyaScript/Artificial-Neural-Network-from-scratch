@@ -95,4 +95,9 @@ def gradient_descent(X_train, Y_train, learning_rate, epochs):
             print(f"{(accuracy(pred, Y_train)*100):.2f}%\n______________")
     return first_weights, first_bias, second_weights, second_bias
 
+def test(X, first_weights, first_bias, second_weights, second_bias):
+    _, _, _, step_4 = forward_pass(first_weights, first_bias, second_weights, second_bias, X)
+    pred = predictions(step_4)
+    return pred
+
 # ifunanyaScript
