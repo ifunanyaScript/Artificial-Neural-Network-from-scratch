@@ -111,4 +111,14 @@ def test_validation(index, first_weights, first_bias, second_weights, second_bia
     plt.imshow(the_sample, interpolation="nearest")
     plt.show()
 
+def predict_number(index, first_weights, first_bias, second_weights, second_bias):
+    the_sample = test_array[:, index, None]
+    pred = test(test_array[:, index, None], first_weights, first_bias, second_weights, second_bias)
+    print(f"Model's prediction: {pred}")
+    
+    the_sample = the_sample.reshape((28, 28)) * 255
+    plt.gray()
+    plt.imshow(the_sample, interpolation="nearest")
+    plt.show()
+
 # ifunanyaScript
