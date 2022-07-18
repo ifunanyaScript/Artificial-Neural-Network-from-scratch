@@ -100,4 +100,15 @@ def test(X, first_weights, first_bias, second_weights, second_bias):
     pred = predictions(step_4)
     return pred
 
+def test_validation(index, first_weights, first_bias, second_weights, second_bias):
+    the_sample = X_train[:, index, None]
+    pred = test(X_train[:, index, None], first_weights, first_bias, second_weights, second_bias)
+    label = Y_train[index]
+    print(f"Model's prediction: {pred}\n Actual label: {label}")
+    
+    the_sample = the_sample.reshape((28, 28)) * 255
+    plt.gray()
+    plt.imshow(the_sample, interpolation="nearest")
+    plt.show()
+
 # ifunanyaScript
