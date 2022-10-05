@@ -80,3 +80,12 @@ def update_parameters(first_weights, first_bias, second_weights, second_bias,
     second_weights = second_weights - d_second_weights*learning_rate
     second_bias = second_bias - d_second_bias*learning_rate
     return first_weights, first_bias, second_weights, second_bias
+
+
+# Get neural network's predictions.
+def predictions(step_4):
+    return np.argmax(step_4, 0)
+
+# Measure network's accuracy.
+def accuracy(predictions, Y_train):
+    return np.sum(predictions == Y_train)/Y_train.shape[0]
