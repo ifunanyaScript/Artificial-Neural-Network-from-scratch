@@ -34,3 +34,11 @@ def ReLU(Z):
 # Derivative of ReLU actiavtion.
 def ReLU_deriv(Z):
     return Z > 0
+
+
+# Softmax activation for output layer.
+def Softmax(step_3):
+    prob_array = np.exp(step_3) / sum(np.exp(step_3))
+    return prob_array
+
+
