@@ -82,9 +82,9 @@ def update_parameters(first_weights, first_bias, second_weights, second_bias,
     return first_weights, first_bias, second_weights, second_bias
 
 
-# Get neural network's predictions.
-def predictions(step_4):
-    return np.argmax(step_4, 0)
+# # Get neural network's predictions.
+# def predictions(step_4):
+#     return np.argmax(step_4, 0)
 
 # Measure network's accuracy.
 def accuracy(predictions, Y_train):
@@ -117,3 +117,28 @@ def gradient_descent(X_train, Y_train, learning_rate, epochs):
             pred = predictions(step_4)
             print(f"Accuracy: {(accuracy(pred, Y_train)*100):.2f}%\n_________________")
     return first_weights, first_bias, second_weights, second_bias
+
+
+# Modified `predictions` to contain confidence.
+def predictions(step_4):
+    pred = np.argmax(step_4, 0)
+    confidence = round(100 * (np.max(step_4)), 2)
+    return pred, confidence
+
+# NN prediction.
+def test(X, first_weights, first_bias, second_weights, second_bias):
+    _, _, _, step_4 = forward_pass(first_weights, first_bias, second_weights, second_bias, X)
+    pred, confidence = predictions(step_4)
+    return pred, confidence
+
+# Validating the prediction.
+def test_validation(index, first_weights, first_bias, second_weights, second_bias):
+    image_sample = X_train[:, index, None]
+    pred, confidence = test(image_sample, first_weights, first_bias, second_weights, second_bias)
+    label = Y_train[index]
+    
+    image_sample = image_sample.reshape((28, 28)) * 255
+    plt.imshow(image_sample, interpolation="nearest", cmap="gray")
+    plt.title(f"Model's prediction: {pred}\nConfidence: {confidence}%\nActual label: {label}")
+    plt.axis("off")
+    plt.show()
