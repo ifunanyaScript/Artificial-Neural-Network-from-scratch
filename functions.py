@@ -69,3 +69,14 @@ def backward_pass(step_1, step_2, step_3, step_4, first_weights, second_weights,
     d_first_weights = 1/samples * d_step_2.dot(X_train.T)
     d_first_bias = 1/samples * np.sum(d_step_2)
     return d_first_weights, d_first_bias, d_second_weights, d_second_bias
+
+
+# Update function for weights and biases.
+def update_parameters(first_weights, first_bias, second_weights, second_bias,
+                      d_first_weights, d_first_bias, d_second_weights, d_second_bias, 
+                      learning_rate):
+    first_weights = first_weights - d_first_weights*learning_rate
+    first_bias = first_bias - d_first_bias*learning_rate
+    second_weights = second_weights - d_second_weights*learning_rate
+    second_bias = second_bias - d_second_bias*learning_rate
+    return first_weights, first_bias, second_weights, second_bias
