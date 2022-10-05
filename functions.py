@@ -48,3 +48,12 @@ def One_Hot_Encoder(Y_train):
     binary_labels[np.arange(Y_train.size), Y_train] = 1
     binary_labels = binary_labels.T
     return binary_labels
+
+
+# Forward propagation.
+def forward_pass(first_weights, first_bias, second_weights, second_bias, X_train):
+    step_1 = first_weights.dot(X_train) + first_bias
+    step_2 = ReLU(step_1)
+    step_3 = second_weights.dot(step_2) + second_bias
+    step_4 = Softmax(step_3)
+    return step_1, step_2, step_3, step_4
