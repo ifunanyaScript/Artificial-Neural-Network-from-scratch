@@ -142,3 +142,17 @@ def test_validation(index, first_weights, first_bias, second_weights, second_bia
     plt.title(f"Model's prediction: {pred}\nConfidence: {confidence}%\nActual label: {label}")
     plt.axis("off")
     plt.show()
+
+ 
+# This function predicts the number using the trained or optimised parameters(weights and biases).
+def predict_number(index, first_weights, first_bias, second_weights, second_bias):
+    image_sample = unlabelled_data[:, index, None]/255
+    pred, confidence = test(image_sample, first_weights, first_bias, second_weights, second_bias)
+    
+    image_sample = image_sample.reshape((28, 28)) * 255
+    plt.imshow(image_sample, interpolation="nearest", cmap="gray")
+    plt.title(f"Model's prediction: {pred}\nConfidence: {confidence}%")
+    plt.axis("off")
+    plt.show()
+    
+# ifunanyaScript
