@@ -89,3 +89,31 @@ def predictions(step_4):
 # Measure network's accuracy.
 def accuracy(predictions, Y_train):
     return np.sum(predictions == Y_train)/Y_train.shape[0]
+
+
+# Gradient for training the network.
+def gradient_descent(X_train, Y_train, learning_rate, epochs):
+    first_weights, first_bias, second_weights, second_bias = initial_parameters()
+    for epoch in range(epochs):
+        step_1, step_2, step_3, step_4 = forward_pass(first_weights, first_bias,
+                                                      second_weights, second_bias, X_train)
+        
+        d_first_weights, d_first_bias, d_second_weights, d_second_bias = backward_pass(
+                                                                        step_1, step_2, 
+                                                                        step_3, step_4,
+                                                                        first_weights,
+                                                                        second_weights, 
+                                                                        X_train, Y_train)
+        
+        first_weights, first_bias, second_weights, second_bias = update_parameters(
+                                                            first_weights, first_bias, 
+                                                            second_weights, second_bias,
+                                                            d_first_weights, d_first_bias, 
+                                                            d_second_weights, d_second_bias, 
+                                                            learning_rate)
+
+        if epoch % 100 == 0:
+            print(f"Epoch: {epoch}/{epochs}")
+            pred = predictions(step_4)
+            print(f"Accuracy: {(accuracy(pred, Y_train)*100):.2f}%\n_________________")
+    return first_weights, first_bias, second_weights, second_bias
